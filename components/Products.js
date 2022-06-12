@@ -32,4 +32,3 @@ export async function getServerSideProps(context) {
     props: { products: products }, // will be passed to the page component as props
   };
 }
-git remote set-url origin https://github.com/kiotie32/artbit-text.git
