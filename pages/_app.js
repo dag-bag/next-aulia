@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import "../styles/globals.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Footer from "../components/Footer";
 
 function MyApp({ Component, pageProps }) {
   const [Key, setKey] = useState(0);
@@ -175,6 +176,7 @@ function MyApp({ Component, pageProps }) {
         SubTotal={SubTotal}
         {...pageProps}
       />
+      <Footer />
     </>
   );
 }
