@@ -63,9 +63,11 @@ export default function Header({ Cart }) {
               <span className="relative">Login</span>
             </button> */}
             {/* <Btn txt="login" path="/login" /> */}
-            <span className="py-2 px-4 rounded-md hover:shadow-md ">
-              <BiUserCircle className="md:text-3xl cursor-pointer text-xl" />
-            </span>
+            <Link href={"/login"}>
+              <span className="py-2 px-4 rounded-md hover:shadow-md ">
+                <BiUserCircle className="md:text-3xl cursor-pointer text-xl" />
+              </span>
+            </Link>
             <span className="py-2 px-4 rounded-md hover:shadow-md ">
               <BiSearchAlt className="md:text-3xl cursor-pointer text-xl" />
             </span>

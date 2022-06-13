@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import "../styles/globals.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+
 function MyApp({ Component, pageProps }) {
   const [Key, setKey] = useState(0);
   const router = useRouter();
@@ -106,7 +107,7 @@ function MyApp({ Component, pageProps }) {
   //   setTshirt(respData);
   // };
   const auth = async (ep, path, Rpath) => {
-    const resp = await fetch(`${process.env.NEXT_PUBLIC_HOST}/${path}`, {
+    const resp = await fetch(`/api/${path}`, {
       method: "POST", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
@@ -114,38 +115,39 @@ function MyApp({ Component, pageProps }) {
       body: JSON.stringify(ep),
     });
     const respData = await resp.json();
-    const { token, success, msg } = respData;
+    console.log(respData);
+    // const { token, success, msg } = respData;
     // console.log(respData);
 
-    if (success) {
-      let cookie = getCookie("auth_token");
-      console.log(cookie);
-      setCookie({ value: cookie });
-      toast.success(msg, {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      // localStorage.setItem("token", authtoken);
-      setTimeout(() => {
-        router.push(Rpath);
-      }, 2000);
-    } else {
-      toast.error(msg, {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      //   props.showAlert("danger", "Invalid credentials");
-    }
+    // if (success) {
+    //   let cookie = getCookie("auth_token");
+    //   console.log(cookie);
+    //   setCookie({ value: cookie });
+    //   toast.success(msg, {
+    //     position: "top-center",
+    //     autoClose: 3000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //   });
+    //   // localStorage.setItem("token", authtoken);
+    //   setTimeout(() => {
+    //     router.push(Rpath);
+    //   }, 2000);
+    // } else {
+    //   toast.error(msg, {
+    //     position: "top-center",
+    //     autoClose: 3000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //   });
+    //   //   props.showAlert("danger", "Invalid credentials");
+    // }
   };
   const logout = () => {
     removeCookies("auth_token");
@@ -166,6 +168,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Header Cart={Cart} />{" "}
       <Component
+        auth={auth}
         addToCart={addToCart}
         removeFromCart={removeFromCart}
         Cart={Cart}

@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-export default function ProductCard({ src, addToCart }) {
+export default function ProductCard({ src, addToCart, title, price }) {
   return (
     <div>
       <div className="shadow-lg rounded-2xl  bg-white w-80 m-auto p-2">
@@ -16,13 +16,13 @@ export default function ProductCard({ src, addToCart }) {
           />
         </div>
         <div className="bg-orange-200 m-3 p-4 rounded-lg">
-          <p className="text-gray-700 text-xl font-bold ">Adidas</p>
+          <p className="text-gray-700 text-xl font-bold ">{title}</p>
           <p className="text-gray-50 text-xs">Live your dream</p>
           <div className="flex items-center justify-between ">
-            <p className="text-gray-700">$98.00</p>
+            <p className="text-gray-700">${price}</p>
             <button
               onClick={() => {
-                addToCart("super1", 1, "Nike", 100, src);
+                addToCart(title, 1, title, price, src);
               }}
               type="button"
               className="w-10 h-10 text-base font-medium rounded-full text-gray-700 bg-orange-500 hover:bg-orange-700"

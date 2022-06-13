@@ -8,7 +8,6 @@ export default function CartPage({
 }) {
   const items = Object.keys(Cart).length;
 
-  console.log(`item:${items}`);
   return (
     <>
       <div>
@@ -59,12 +58,19 @@ export default function CartPage({
                               {Cart[k].name}
                             </span>
                             <span className="text-red-500 text-xs">Apple</span>
-                            <a
-                              href="#"
-                              className="font-semibold hover:text-red-500 text-gray-500 text-xs"
+                            <span
+                              onClick={() => {
+                                removeFromCart(
+                                  k,
+                                  Cart[k].qty,
+                                  Cart[k].name,
+                                  Cart[k].price
+                                );
+                              }}
+                              className="font-semibold hover:text-red-500 text-gray-500 text-xs cursor-pointer"
                             >
                               Remove
-                            </a>
+                            </span>
                           </div>
                         </div>
                         <div className="flex justify-center w-1/5">
@@ -78,11 +84,9 @@ export default function CartPage({
                             <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
                           </svg>
 
-                          <input
-                            className="mx-2 border text-center w-8"
-                            type="text"
-                            value={Cart[k].qty}
-                          />
+                          <span className="mx-2 border text-center w-8">
+                            {Cart[k].qty}
+                          </span>
 
                           <svg
                             onClick={() => {

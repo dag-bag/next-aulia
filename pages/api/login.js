@@ -1,28 +1,34 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import connectDb from "../../middleware/mongoose";
 import User from "../../models/User";
-var CryptoJS = require("crypto-js");
+var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 // require("dotenv").config();
 import { setCookies } from "cookies-next";
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
-    let user = await User.findOne({ email: req.body.email });
+    let { email, password } = req.body;
+    let user = await User.findOne({ email: email });
+    if (!user) {
+      let success = false;
+      return res.status(404).send({ error: "user not exist", success });
+    }
     if (user) {
-      var bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET);
-      var originalText = bytes.toString(CryptoJS.enc.Utf8);
-
-      if (req.body.email === user.email && req.body.password === originalText) {
-        const userID = {
-          id: user.id,
-        };
-        var token = jwt.sign(userID, process.env.SECRET);
-        setCookies("auth_token", token, { req, res });
-        return res
-          .status(200)
-          .json({ success: true, msg: "User is login successfully", token });
+      const passCompare = await bcrypt.compare(password, user.password);
+      if (!passCompare) {
+        let success = false;
+        return res.status(404).send({ error: "wrong password", success });
       }
+
+      const userID = {
+        id: user.id,
+      };
+      var token = jwt.sign(userID, process.env.SECRET);
+      setCookies("auth_token", token, { req, res });
+      return res
+        .status(200)
+        .json({ success: true, msg: "User is login successfully", token });
     }
 
     // let newProduct = await new Product(req.body);
