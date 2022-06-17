@@ -1,8 +1,16 @@
 import React from "react";
-
+import Head from "next/head";
 export default function Account() {
   return (
     <div className="mt-8">
+      <Head>
+        <title>your account page - aulia.</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="description"
+          content="this is website about the packaging."
+        />
+      </Head>
       <section className="h-screen bg-gray-100 bg-opacity-50">
         <form className="container max-w-2xl mx-auto shadow-md md:w-3/4">
           <div className="p-4 bg-gray-100 border-t-2 border-indigo-400 rounded-lg bg-opacity-5">

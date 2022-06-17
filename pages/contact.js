@@ -1,8 +1,17 @@
+import Head from "next/head";
 import React from "react";
 
 export default function Contact() {
   return (
     <div>
+      <Head>
+        <title>Contact us - aulia.</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="description"
+          content="this is website about the packaging."
+        />
+      </Head>
       <section className="text-gray-600 body-font relative">
         <div className="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap">
           <div className="lg:w-2/3 md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">

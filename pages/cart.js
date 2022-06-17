@@ -1,5 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import Head from "next/head";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function CartPage({
   Cart,
   removeFromCart,
@@ -10,6 +13,11 @@ export default function CartPage({
 
   return (
     <>
+      <Head>
+        <title>your cart - aulia.</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content="packaging website cart" />
+      </Head>
       <div>
         <div className="bg-gray-100">
           <div className="container mx-auto mt-10">
@@ -180,6 +188,7 @@ export default function CartPage({
             </div>
           </div>
         </div>
+        <ToastContainer />
       </div>
     </>
   );

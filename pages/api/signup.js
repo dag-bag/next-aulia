@@ -33,9 +33,12 @@ const handler = async (req, res) => {
     var token = jwt.sign(userID, process.env.SECRET);
 
     setCookies("auth_token", token, { req, res });
-    return res
-      .status(200)
-      .json({ success: true, msg: "User is created successfully", token });
+    return res.status(200).json({
+      success: true,
+      msg: "User is created successfully",
+      token,
+      name: savedUser.name,
+    });
   } else {
     return res
       .status(400)

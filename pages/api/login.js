@@ -18,7 +18,9 @@ const handler = async (req, res) => {
       const passCompare = await bcrypt.compare(password, user.password);
       if (!passCompare) {
         let success = false;
-        return res.status(404).send({ error: "wrong password", success });
+        return res
+          .status(404)
+          .send({ error: "wrong password", success, msg: "Wrong password" });
       }
 
       const userID = {
@@ -26,18 +28,20 @@ const handler = async (req, res) => {
       };
       var token = jwt.sign(userID, process.env.SECRET);
       setCookies("auth_token", token, { req, res });
-      return res
-        .status(200)
-        .json({ success: true, msg: "User is login successfully", token });
+      return res.status(200).json({
+        success: true,
+        msg: "User is login successfully",
+        token,
+        name: user.name,
+      });
     }
 
     // let newProduct = await new Product(req.body);
     // await newProduct.save();
-    res.status(400).json({ success: false, msg: "User is not authenticate" });
   } else {
     return res
       .status(400)
-      .json({ msg: "This method is not allowed", success: false });
+      .json({ success: false, msg: "User is not authenticate" });
   }
 };
 export default connectDb(handler);

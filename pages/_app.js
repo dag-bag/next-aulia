@@ -3,8 +3,10 @@ import "../styles/globals.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Footer from "../components/Footer";
-
+import { toast } from "react-toastify";
+import { checkCookies, getCookie, removeCookies } from "cookies-next";
 function MyApp({ Component, pageProps }) {
+  const [Cookie, setCookie] = useState();
   const [Key, setKey] = useState(0);
   const router = useRouter();
   useEffect(() => {
@@ -22,16 +24,16 @@ function MyApp({ Component, pageProps }) {
     } catch (error) {
       console.error(error);
     }
+    // removeCookies("auth_token");
+    const checkCookie = checkCookies("auth_token");
 
-    // const checkCookie = checkCookies("auth_token");
+    if (checkCookie) {
+      let cookie = getCookie("auth_token");
 
-    // if (checkCookie) {
-    //   let cookie = getCookie("auth_token");
-
-    //   setCookie({ value: cookie });
-    //   // removeCookies("auth_token");
-    //   setKey(Math.random());
-    // }
+      setCookie({ value: cookie });
+      // removeCookies("auth_token");
+      setKey(Math.random());
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query]);
   const [progress, setProgress] = useState(0);
@@ -58,15 +60,15 @@ function MyApp({ Component, pageProps }) {
     setCart(NewCart);
     SaveCart(NewCart);
 
-    // toast.success("Item Added to cart", {
-    //   position: "bottom-center",
-    //   autoClose: 3000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    // });
+    toast.success("Item Added to cart", {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
   const buyNow = (itemCode, qty, size, name, price, variant) => {
     SaveCart({});
@@ -99,6 +101,15 @@ function MyApp({ Component, pageProps }) {
     }
     setCart(NewCart);
     SaveCart(NewCart);
+    toast.success("Item remove from cart", {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
   // // To get all the thshits
   // const [Tshirt, setTshirt] = useState([]);
@@ -116,39 +127,41 @@ function MyApp({ Component, pageProps }) {
       body: JSON.stringify(ep),
     });
     const respData = await resp.json();
-    console.log(respData);
-    // const { token, success, msg } = respData;
-    // console.log(respData);
 
-    // if (success) {
-    //   let cookie = getCookie("auth_token");
-    //   console.log(cookie);
-    //   setCookie({ value: cookie });
-    //   toast.success(msg, {
-    //     position: "top-center",
-    //     autoClose: 3000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //   });
-    //   // localStorage.setItem("token", authtoken);
-    //   setTimeout(() => {
-    //     router.push(Rpath);
-    //   }, 2000);
-    // } else {
-    //   toast.error(msg, {
-    //     position: "top-center",
-    //     autoClose: 3000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //   });
-    //   //   props.showAlert("danger", "Invalid credentials");
-    // }
+    const { token, success, msg, name } = respData;
+    console.log(msg);
+
+    if (success) {
+      let cookie = getCookie("auth_token");
+      if (cookie === token) {
+        setCookie({ value: cookie });
+        toast.success(msg, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+
+      // localStorage.setItem("token", authtoken);
+      // setTimeout(() => {
+      //   router.push(Rpath);
+      // }, 2000);
+    } else {
+      toast.error(msg, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      //   props.showAlert("danger", "Invalid credentials");
+    }
   };
   const logout = () => {
     removeCookies("auth_token");

@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Head from "next/head";
 export default function Login({ auth }) {
   const [ep, setEp] = useState({
     email: "",
@@ -15,6 +19,15 @@ export default function Login({ auth }) {
   };
   return (
     <div>
+      <Head>
+        <title>Login into your account - aulia.</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="description"
+          content="this is website about the packaging."
+        />
+      </Head>
+      <ToastContainer />
       <div className="flex flex-wrap w-full">
         <div className="flex flex-col w-full md:w-1/2">
           <div className="flex justify-center pt-12 md:justify-start md:pl-12 md:-mb-24">

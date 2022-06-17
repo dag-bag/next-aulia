@@ -5,10 +5,20 @@ import Features from "../components/Features";
 import Products from "../components/Products";
 import Product from "../models/Product";
 import mongoose, { mongo } from "mongoose";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function Home({ addToCart, Cart, removeFromCart, products }) {
   return (
     <div>
+      <Head>
+        <title>Best packaging site - aulia.</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="description"
+          content="this is website about the packaging."
+        />
+      </Head>
+      <ToastContainer />
       {/* Main */}
       <Main />
       {/* Features of website */}

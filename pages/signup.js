@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { BiUserCircle } from "react-icons/bi";
 import Link from "next/link";
 import Image from "next//image";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Head from "next/head";
+
 export default function Signup({ auth }) {
   const [ep, setEp] = useState({
     name: "",
@@ -17,6 +21,15 @@ export default function Signup({ auth }) {
   };
   return (
     <div>
+      <Head>
+        <title>Create your account now - aulia.</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="description"
+          content="this is website about the packaging."
+        />
+      </Head>
+      <ToastContainer />
       <div>
         <div className="flex flex-wrap w-full">
           <div className="flex flex-col w-full md:w-1/2">

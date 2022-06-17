@@ -1,10 +1,17 @@
 import mongoose, { mongo } from "mongoose";
 import ProductModel from "../../models/Product";
 import Image from "next/image";
+import Head from "next/head";
+
 const Product = ({ product }) => {
   const { title, desc, img, category, price } = product;
   return (
     <>
+      <Head>
+        <title>{title} - aulia.</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content={`${desc}`} />
+      </Head>
       <section className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
