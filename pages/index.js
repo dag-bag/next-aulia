@@ -17,6 +17,35 @@ export default function Home({ addToCart, Cart, removeFromCart, products }) {
           name="description"
           content="this is website about the packaging."
         />
+
+        {/* <!-- Facebook Meta Tags --> */}
+        <meta property="og:url" content="https://next-aulia.vercel.app/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Best packaging site - aulia." />
+        <meta
+          property="og:description"
+          content="this is website about the packaging."
+        />
+        <meta
+          property="og:image"
+          content="https://next-aulia.vercel.app/overview.jpeg"
+        />
+
+        {/* <!-- Twitter Meta Tags --> */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="next-aulia.vercel.app" />
+        <meta property="twitter:url" content="https://next-aulia.vercel.app/" />
+        <meta name="twitter:title" content="Best packaging site - aulia." />
+        <meta
+          name="twitter:description"
+          content="this is website about the packaging."
+        />
+        <meta
+          name="twitter:image"
+          content="https://next-aulia.vercel.app/overview.jpeg"
+        />
+
+        {/* <!-- Meta Tags Generated via https://www.opengraph.xyz --> */}
       </Head>
       <ToastContainer />
       {/* Main */}
