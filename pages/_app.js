@@ -5,6 +5,9 @@ import { useRouter } from "next/router";
 import Footer from "../components/Footer";
 import { toast } from "react-toastify";
 import { checkCookies, getCookie, removeCookies } from "cookies-next";
+import Head from "next/head";
+import Script from "next/script";
+
 function MyApp({ Component, pageProps }) {
   const [Cookie, setCookie] = useState();
   const [Key, setKey] = useState(0);
@@ -180,7 +183,7 @@ function MyApp({ Component, pageProps }) {
   };
   return (
     <>
-      <Header Cart={Cart} />{" "}
+      <Header Cart={Cart} />
       <Component
         auth={auth}
         addToCart={addToCart}
