@@ -11,7 +11,7 @@ export default function ProductCard({
 }) {
   return (
     <div>
-      <div className="shadow-lg rounded-2xl  bg-white w-80 m-auto p-2 cursor-pointer">
+      <div className="productCard   shadow-lg rounded-2xl  bg-white w-80 m-auto p-2 cursor-pointer">
         <Link href={`/product/${slug}`}>
           <div className="w-full relative flex justify-center items-center">
             <Image
