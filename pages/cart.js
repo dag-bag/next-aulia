@@ -3,6 +3,8 @@ import Image from "next/image";
 import Head from "next/head";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
+
 export default function CartPage({
   Cart,
   removeFromCart,
@@ -53,7 +55,7 @@ export default function CartPage({
                           <div className="w-20 relative">
                             <Image
                               className="h-24 rounded-md"
-                              src={Cart[k].img}
+                              src={`${Cart[k].img}`}
                               alt=""
                               width={80}
                               height={80}
@@ -180,9 +182,11 @@ export default function CartPage({
                     <span>Total cost</span>
                     <span>${SubTotal}</span>
                   </div>
-                  <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
-                    Checkout
-                  </button>
+                  <Link href="/checkout">
+                    <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
+                      Checkout
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>

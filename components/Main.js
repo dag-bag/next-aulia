@@ -10,12 +10,12 @@ export default function Main() {
           src={"/p.jpg"}
           alt="..."
           width={60}
-          height={20}
+          height={30}
           layout="responsive"
           objectFit="cover"
         />
         <div className="absolute top-0 left-0  bg-black opacity-40 w-full h-full"></div>
-        <h2 className="absolute top-2 sm:top-5 sm:text-4xl  text-xl left-5 md:top-32 md:left-10 lg:top-16 lg:left-10 text-white font-extrabold md:text-6xl">
+        <h2 className="absolute top-2 sm:top-5 sm:text-4xl  text-2xl left-5 md:top-32 md:left-10 lg:top-16 lg:left-10 text-white font-extrabold md:text-6xl">
           We strive to build a commitment-oriented <br /> quality and client
           satisfaction.
         </h2>

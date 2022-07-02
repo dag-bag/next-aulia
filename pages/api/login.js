@@ -22,6 +22,13 @@ const handler = async (req, res) => {
           .status(404)
           .send({ error: "wrong password", success, msg: "Wrong password" });
       }
+      if (!user.verification) {
+        return res.status(404).send({
+          error: "User is not authenticate",
+          success: false,
+          msg: "User is not authenticate",
+        });
+      }
 
       const userID = {
         id: user.id,
