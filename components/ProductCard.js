@@ -17,7 +17,7 @@ export default function ProductCard({
             <Image
               src={src}
               alt="adidas"
-              className="w-32 p-4 h-36 m-auto rounded-md"
+              className="itemView w-32 p-4 h-36 m-auto rounded-md"
               width={275}
               height={275}
               objectFit="cover"
@@ -38,7 +38,7 @@ export default function ProductCard({
                 addToCart(title, 1, title, price, src);
               }}
               type="button"
-              className="w-10 h-10 text-base font-medium rounded-full text-gray-700 bg-orange-500 hover:bg-orange-700"
+              className="addToCart w-10 h-10 text-base font-medium rounded-full text-gray-700 bg-orange-500 hover:bg-orange-700"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
