@@ -13,6 +13,7 @@ function MyApp({ Component, pageProps }) {
   const [Key, setKey] = useState(0);
   const router = useRouter();
   useEffect(() => {
+    console.log(window.datalayer);
     router.events.on("routeChangeStart", () => {
       setProgress(40);
     });
@@ -63,6 +64,11 @@ function MyApp({ Component, pageProps }) {
     setCart(NewCart);
     SaveCart(NewCart);
 
+    window.dataLayer.push({
+      items: {
+        added_items: NewCart,
+      },
+    });
     toast.success("Item Added to cart", {
       position: "bottom-center",
       autoClose: 3000,
@@ -194,6 +200,21 @@ function MyApp({ Component, pageProps }) {
             })(window,document,'script','dataLayer','GTM-55GFBMB');`,
         }}
       />
+      <Script
+        id={"datalayer"}
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            
+          `,
+        }}
+      />
+      {/* window.dataLayer.push({ 
+    "attributes": {
+       'pagePostAuthor': 'Julius Fedorovicius' 
+    }
+ }); */}
+
       <Header Cart={Cart} />
       <Component
         auth={auth}
