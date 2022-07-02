@@ -13,7 +13,7 @@ export default function ProductCard({
     <div>
       <div className="productCard   shadow-lg rounded-2xl  bg-white w-80 m-auto p-2 cursor-pointer">
         <Link href={`/product/${slug}`}>
-          <div className="w-full relative flex justify-center items-center">
+          <div className="itemView w-full relative flex justify-center items-center">
             <Image
               src={src}
               alt="adidas"
