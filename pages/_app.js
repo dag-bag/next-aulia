@@ -65,9 +65,7 @@ function MyApp({ Component, pageProps }) {
     SaveCart(NewCart);
 
     window.dataLayer.push({
-      items: {
-        added_items: NewCart,
-      },
+      items: [NewCart],
     });
     toast.success("Item Added to cart", {
       position: "bottom-center",
