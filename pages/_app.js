@@ -65,7 +65,10 @@ function MyApp({ Component, pageProps }) {
     SaveCart(NewCart);
 
     window.dataLayer.push({
-      items: [NewCart],
+      event: "add_to_cart",
+      ecommerce: {
+        items: [NewCart],
+      },
     });
     toast.success("Item Added to cart", {
       position: "bottom-center",
