@@ -61,7 +61,7 @@ function MyApp({ Component, pageProps }) {
     } else {
       NewCart[itemCode] = { qty: 1, name, price, img };
     }
-    console.log(NewCart);
+
     setCart(NewCart);
     SaveCart(NewCart);
 
@@ -93,6 +93,7 @@ function MyApp({ Component, pageProps }) {
         ],
       },
     });
+    console.log(window.datalayer);
     toast.success("Item Added to cart", {
       position: "bottom-center",
       autoClose: 3000,
