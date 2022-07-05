@@ -2,7 +2,7 @@ import connectDb from "../../middleware/mongoose";
 import User from "../../models/User";
 const handler = async (req, res) => {
   if (req.method === "PUT") {
-    let updateUser = await User.findByIdAndUpdate(req.body, {
+    let updateUser = await User.findByIdAndUpdate(await req.body, {
       verification: true,
     });
 

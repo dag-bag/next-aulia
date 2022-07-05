@@ -10,12 +10,12 @@ import { setCookies } from "cookies-next";
 const handler = async (req, res) => {
   if (req.method === "POST") {
     let user = await User.findOne({ email: req.body.email });
-    if (user) {
-      console.log("Exist");
-      return res
-        .status(400)
-        .json({ msg: "This user is already exist", success: false });
-    }
+    // if (user) {
+    //   console.log("Exist");
+    //   return res
+    //     .status(400)
+    //     .json({ msg: "This user is already exist", success: false });
+    // }
     const { name, email } = req.body;
 
     let salt = bcrypt.genSaltSync(10);
