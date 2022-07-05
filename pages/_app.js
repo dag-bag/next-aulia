@@ -54,7 +54,7 @@ function MyApp({ Component, pageProps }) {
     }
     setSubTotal(subt);
   };
-  const addToCart = (itemCode, qty, name, price, img) => {
+  const addToCart = (itemCode, qty, name, price, img, key) => {
     let NewCart = Cart;
     if (itemCode in Cart) {
       NewCart[itemCode].qty = Cart[itemCode].qty + qty;
@@ -68,19 +68,34 @@ function MyApp({ Component, pageProps }) {
     window.dataLayer.push({
       event: "add_to_cart",
       ecommerce: {
-        item_id: "SKU_12345",
-        item_name: "Stan and Friends Tee",
-        affiliation: "Google Merchandise Store",
-        price: 9.99,
-        currency: "USD",
+        item_id: key,
+        item_name: name,
+        price: price,
+        currency: "INR",
         items: [
           {
-            name: "vicky",
-            price: 9.99,
+            productId: key,
+            name: name,
+            price: price,
+            qty: qty,
           },
         ],
       },
     });
+    let a = [
+      {
+        ecommerce: {
+          item_id: key,
+          item_name: name,
+          price: price,
+          currency: "INR",
+          items: [
+            { itemCode, productId: key, name: name, price: price, qty: qty },
+          ],
+        },
+      },
+    ];
+    console.log(a);
 
     toast.success("Item Added to cart", {
       position: "bottom-center",

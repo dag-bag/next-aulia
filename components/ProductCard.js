@@ -8,6 +8,7 @@ export default function ProductCard({
   price,
   category,
   slug,
+  id,
 }) {
   return (
     <div>
@@ -35,7 +36,7 @@ export default function ProductCard({
             <p className="text-gray-700">${price}</p>
             <button
               onClick={() => {
-                addToCart(title, 1, title, price, src);
+                addToCart(title, 1, title, price, src, id);
               }}
               type="button"
               className="addToCart w-10 h-10 text-base font-medium rounded-full text-gray-700 bg-orange-500 hover:bg-orange-700"

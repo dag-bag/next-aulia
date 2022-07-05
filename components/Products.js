@@ -11,6 +11,7 @@ export default function Products({ addToCart, Cart, products }) {
           Object.keys(products).map((k) => {
             return (
               <ProductCard
+                id={products[k]._id}
                 slug={products[k].slug}
                 key={products[k]._id}
                 title={products[k].title}
